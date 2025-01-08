@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DoorControl : MonoBehaviour
 {
+    [SerializeField] private bool lockDoorAfterExit;
     
     public GameObject door;
     public float timer;
