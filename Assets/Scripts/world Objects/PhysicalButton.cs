@@ -6,9 +6,9 @@ using System;
 
 public class PhysicalButton : MonoBehaviour, IInteractable
 {
-    //public UnityEvent OnPressed;
+    public UnityEvent OnPressed;
    // public GameObject doorObject;
-   public Action OnPressed;
+   //public Action OnPressed;
     public void StartInteraction()
     {
         Debug.Log("Pressed Button");
