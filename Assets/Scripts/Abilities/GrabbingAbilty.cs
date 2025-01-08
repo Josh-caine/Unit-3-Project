@@ -17,10 +17,8 @@ public class GrabbingAbilty : MonoBehaviour
         objectInHold = toGrab;
         toGrab.useGravity = false;
         toGrab.isKinematic = true;
-        toGrab.transform.SetParent(holdingHand, true);
         toGrab.transform.position = holdingHand.position;
-        toGrab.transform.SetParent(holdingHand);
-        
+        toGrab.transform.SetParent(holdingHand, true);
     }
 
     public void DropDownObject()

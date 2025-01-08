@@ -18,7 +18,7 @@ private void OnTriggerEnter(Collider other)
     {
         if(unlockAnyObject || rb == other.attachedRigidbody)
         {
-            OnPressureStart.Invoke();
+            OnPressureStart?.Invoke();
             return;
         }
     }
@@ -30,7 +30,7 @@ private void OnTriggerExit(Collider other)
     {
         if(unlockAnyObject || rb == other.attachedRigidbody)
         {
-            OnPressureExit.Invoke();
+            OnPressureExit?.Invoke();
             return;
         }
     }

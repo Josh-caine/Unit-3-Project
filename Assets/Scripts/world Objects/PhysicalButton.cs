@@ -7,13 +7,11 @@ using System;
 public class PhysicalButton : MonoBehaviour, IInteractable
 {
     public UnityEvent OnPressed;
-   // public GameObject doorObject;
-   //public Action OnPressed;
+    
     public void StartInteraction()
     {
         Debug.Log("Pressed Button");
-       // doorObject.SetActive(false);
-       OnPressed?.Invoke();
+        OnPressed?.Invoke();
     }
 
     public void StopInteraction()

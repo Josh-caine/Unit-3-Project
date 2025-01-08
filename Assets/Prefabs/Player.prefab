@@ -714,7 +714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa528c2d2e332d45bfa5a9bdce0375b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdingHand: {fileID: 0}
+  holdingHand: {fileID: 3272042449764717886}
 --- !u!1 &8944383821155698791
 GameObject:
   m_ObjectHideFlags: 0
