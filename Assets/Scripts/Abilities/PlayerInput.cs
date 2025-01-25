@@ -5,22 +5,37 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
+     public static PlayerInput Instance;
      [SerializeField] private MoveAbility moveAbility;
      [SerializeField] private LookAbility lookAbility;
      [SerializeField] private ShootingAbility shootingAbility;
      [SerializeField] private JumpAbility jumpAbility;
      [SerializeField] private InteractAbility interactAbility;
+     [SerializeField] private CommanderAbility commanderAbility;
      //Directional Inputs
      private Vector2 lookDirection;
      [SerializeField] private float mouseSensitivity;
 
 
-
-
+     private void Awake() 
+     {
+          if(Instance == null)
+          {
+               Instance = this;
+          }
+          else
+          {
+               Destroy(gameObject);
+          }     
+     }
 
     
     void Start()
     {
+          GetComponent<HealthSystem>().OnDead += () =>
+          {
+               this.enabled = false;
+          };     
           // Control of mouse Cursor
           Cursor.visible = false;
           Cursor.lockState = CursorLockMode.Locked; //Locked to the center of the screen
@@ -65,6 +80,12 @@ public class PlayerInput : MonoBehaviour
                jumpAbility.Jump();
 
           } 
+
+
+          if(commanderAbility && Input.GetMouseButtonDown(1))
+          {
+               commanderAbility.Command();
+          }
 
     }
 }

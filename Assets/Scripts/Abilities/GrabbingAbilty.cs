@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrabbingAbilty : MonoBehaviour
+public class GrabbingAbility : MonoBehaviour
 {
     [SerializeField] private Transform holdingHand;
+    [SerializeField] private float syncStrength;
     private Rigidbody objectInHold;
+
     public void PickUpObject(Rigidbody toGrab)
     {
         if(objectInHold != null)
@@ -16,21 +18,43 @@ public class GrabbingAbilty : MonoBehaviour
 
         objectInHold = toGrab;
         toGrab.useGravity = false;
-        toGrab.isKinematic = true;
+        toGrab.drag = 10;
         toGrab.transform.position = holdingHand.position;
-        toGrab.transform.SetParent(holdingHand, true);
+
+        //toGrab.constraints = RigidbodyConstraints.FreezeRotation;
+
+        //toGrab.isKinematic = true;
+        //toGrab.transform.SetParent(holdingHand, true);
     }
 
     public void DropDownObject()
     {
-        objectInHold.useGravity = true;
-        objectInHold.isKinematic = false;
-        objectInHold.transform.SetParent(null);
-        objectInHold = null;
+        if(objectInHold != null)
+        {
+            objectInHold.useGravity = true;
+            objectInHold.drag = 0;
+
+            //objectInHold.constraints = RigidbodyConstraints.None;
+
+            objectInHold = null;
+
+
+            //objectInHold.isKinematic = false;
+            //objectInHold.transform.SetParent(null);
+        }
+
     }
 
+    private void Update()
+    {
+        if(objectInHold != null && Vector3.Distance(holdingHand.position, objectInHold.transform.position) > 0.1f)
+        {
+            MoveObject();
+        }
+    }
     public void MoveObject()
     {
-
+        Vector3 targetDirection = holdingHand.position - objectInHold.transform.position;
+        objectInHold.AddForce(targetDirection * syncStrength);
     }
 }

@@ -5,13 +5,14 @@ using UnityEngine.Events;
 using System;
 using UnityEngine.Rendering.Universal;
 
-public class PressurePlate : MonoBehaviour
+public class PressurePlate : MonoBehaviour, IPuzzlePiece
 {
     [SerializeField] private Rigidbody[] correctRigidbody;
     [SerializeField] private bool unlockAnyObject;
     public UnityEvent OnPressureStart = new UnityEvent();
 
     public UnityEvent OnPressureExit = new UnityEvent();
+    protected bool isPressed;
 private void OnTriggerEnter(Collider other) 
 {
     foreach(Rigidbody rb in correctRigidbody)
@@ -19,6 +20,7 @@ private void OnTriggerEnter(Collider other)
         if(unlockAnyObject || rb == other.attachedRigidbody)
         {
             OnPressureStart?.Invoke();
+            isPressed = true;
             return;
         }
     }
@@ -31,11 +33,19 @@ private void OnTriggerExit(Collider other)
         if(unlockAnyObject || rb == other.attachedRigidbody)
         {
             OnPressureExit?.Invoke();
+            isPressed = false;
             return;
         }
     }
 
 }
 
+    public void LinkToPuzzle(Puzzle p)
+    {
+    }
 
+    public bool IsCorrect()
+    {
+        return isPressed;
+    }
 }

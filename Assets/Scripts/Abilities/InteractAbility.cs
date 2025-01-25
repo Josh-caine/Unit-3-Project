@@ -6,34 +6,30 @@ public class InteractAbility : MonoBehaviour
 {
     [SerializeField] private Transform interactionTip;
     [SerializeField] private LayerMask interactionFilter;
-    [SerializeField] private GrabbingAbilty grabbingAbilty;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private GrabbingAbility grabbingAbility;
 
     // Update is called once per frame
     public void Interact()
     {
-        Ray customRay = new Ray(interactionTip.position, interactionTip.forward); 
+        Ray customRay = new Ray(interactionTip.position, interactionTip.forward);
         RaycastHit tempHit;
 
-        if(!Physics.Raycast(customRay, out tempHit, 5f, interactionFilter)) return;
+        if (!Physics.Raycast(customRay, out tempHit, 5f, interactionFilter))
+        {
+            grabbingAbility.DropDownObject();
+            return;
+        }
 
         IInteractable interactFeature = tempHit.collider.GetComponent<IInteractable>();
-
-        if(interactFeature !=  null)
+        if(interactFeature != null)
         {
             interactFeature.StartInteraction();
         }
-        else
+        else if(tempHit.rigidbody)
         {
-            grabbingAbilty.PickUpObject(tempHit.rigidbody);
+
+            grabbingAbility.PickUpObject(tempHit.rigidbody);
         }
-
     }
-
-
 
 }
