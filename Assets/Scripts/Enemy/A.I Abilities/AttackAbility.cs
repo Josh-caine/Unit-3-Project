@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 /// <summary>
 /// This ability is specific for ai characters which can attack the player in different ways
@@ -13,6 +14,8 @@ public class AttackAbility : MonoBehaviour
     private bool isAttacking;
     private float attackTimer;
     private HealthSystem targetToAttack;
+  
+    public Transform turretEye;
 
     void Start()
     {
@@ -36,6 +39,7 @@ public class AttackAbility : MonoBehaviour
 
     public void StartAttack(Transform target)
     {
+        
         targetToAttack = target.GetComponent<HealthSystem>();
         Debug.Log("Started attack with another script");
         isAttacking = true;
@@ -54,5 +58,12 @@ public class AttackAbility : MonoBehaviour
     public void StopAttack()
     {
         isAttacking = false;
+    }
+
+ 
+
+    void OnCollisionEnter(Collision collision)
+    {
+        
     }
 }

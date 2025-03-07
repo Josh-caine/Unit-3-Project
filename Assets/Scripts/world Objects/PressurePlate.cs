@@ -2,50 +2,59 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using System;
-using UnityEngine.Rendering.Universal;
-
 public class PressurePlate : MonoBehaviour, IPuzzlePiece
 {
-    [SerializeField] private Rigidbody[] correctRigidbody;
-    [SerializeField] private bool unlockAnyObject;
-    public UnityEvent OnPressureStart = new UnityEvent();
+    [SerializeField] private bool unlockWithAnyObject;
+    [SerializeField] private Rigidbody[] correctRigidbodies;
 
+    public UnityEvent OnPressureStart = new UnityEvent();
     public UnityEvent OnPressureExit = new UnityEvent();
+    [SerializeField] private Vector3 openOffset;
+    [SerializeField] private float dropSpeed;
+    private Vector3 startPosition;
+
     protected bool isPressed;
-private void OnTriggerEnter(Collider other) 
-{
-    foreach(Rigidbody rb in correctRigidbody)
+    private void OnTriggerStay(Collider other)
     {
-        if(unlockAnyObject || rb == other.attachedRigidbody)
+        if(unlockWithAnyObject)
         {
             OnPressureStart?.Invoke();
             isPressed = true;
             return;
         }
-    }
-}
 
-private void OnTriggerExit(Collider other) 
-{
-    foreach(Rigidbody rb in correctRigidbody)
-    {
-        if(unlockAnyObject || rb == other.attachedRigidbody)
+        foreach (Rigidbody rb in correctRigidbodies)
         {
-            OnPressureExit?.Invoke();
-            isPressed = false;
-            return;
+            if (rb == other.attachedRigidbody)
+            {
+                OnPressureStart?.Invoke();
+                isPressed = true;
+                return;
+            }
         }
+
     }
 
-}
-
-    public void LinkToPuzzle(Puzzle p)
+    private void OnTriggerExit(Collider other)
     {
+
+        foreach (Rigidbody rb in correctRigidbodies)
+        {
+            if (unlockWithAnyObject || rb == other.attachedRigidbody)
+            {
+                OnPressureExit?.Invoke();
+                isPressed = false;
+                return;
+            }
+        }
+        
     }
 
+
+    //IMPLEMENTATION OF INTERFACE INTO PRESSURE PAD/PLATE
     public bool IsCorrect()
     {
+        //isPressed is a simple boolean created in the pressure plate and it says when there is a rigidbody above it
         return isPressed;
     }
 }

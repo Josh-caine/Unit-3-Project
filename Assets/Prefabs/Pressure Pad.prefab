@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 6258344774484245309}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.217, y: 0.034, z: -5.25}
+  m_LocalPosition: {x: 3.217, y: 0, z: -5.25}
   m_LocalScale: {x: 1.7555, y: 0.14356, z: 2.0736}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -98,10 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 374f5840edb38814aa8e48986f606315, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  correctRigidbody:
-  - {fileID: 0}
-  - {fileID: 0}
-  unlockAnyObject: 0
+  unlockWithAnyObject: 0
+  correctRigidbodies: []
   OnPressureStart:
     m_PersistentCalls:
       m_Calls:
@@ -132,6 +130,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  openOffset: {x: 0, y: -0.5, z: 0}
+  dropSpeed: 0
 --- !u!65 &9020405008777319185
 BoxCollider:
   m_ObjectHideFlags: 0

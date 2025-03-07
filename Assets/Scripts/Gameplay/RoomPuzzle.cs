@@ -1,41 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 
 public class RoomPuzzle : Puzzle
 {
-    private IPuzzlePiece[] allPuzzlePieces;
 
-    private void Awake() 
+    private void Update()
     {
-        allPuzzlePieces = GetComponentsInChildren<IPuzzlePiece>();
-        foreach (IPuzzlePiece piece in allPuzzlePieces)
-        {
-            piece.LinkToPuzzle(this);
-        }
-    }
-
-    public void Update()
-    {
+        //Check solution is executed every frame until isPuzzleComplete is true
         if(CheckSolution() && isPuzzleComplete == false)
         {
-            onPuzzleCompleted?.Invoke();
+            OnPuzzleCompleted?.Invoke();
             isPuzzleComplete = true;
         }
     }
+
+    //CheckSolution is as simple as it is, it checks for all "pieces" in the puzzle.
+    //If any piece is incorrect, CheckSolution returns false as the puzzle is not complete
     public override bool CheckSolution()
     {
         foreach (IPuzzlePiece piece in allPuzzlePieces)
         {
-            if(!piece.IsCorrect())
+            if (!piece.IsCorrect())
             {
                 return false;
             }
         }
-    }
 
-    private void OnTriggerEnter(Collider other) 
+        //If none of the pieces gives a false value, then return true
+        return true;
+    }
+     
+    //This could help with optimization for the game, but we can look at this next class
+
+    /*
+    private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
         {
@@ -44,11 +43,12 @@ public class RoomPuzzle : Puzzle
         
     }
 
-    private void OnTriggerExit(Collider other) 
+    private void OnTriggerExit(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             isPuzzleActive = false;
         }
     }
+    */
 }

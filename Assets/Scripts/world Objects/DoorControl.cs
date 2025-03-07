@@ -7,10 +7,16 @@ public class DoorControl : MonoBehaviour
     [SerializeField] private bool lockDoorAfterExit;
 
     public GameObject door;
+    public GameObject doorButton;
+
+    [SerializeField] private Rigidbody key;
+
+
     public float timer;
     private void OnTriggerEnter(Collider other)
     {
         //Change door color (visual effects)
+        
     }
 
     private void OnTriggerStay(Collider other)
@@ -19,19 +25,19 @@ public class DoorControl : MonoBehaviour
 
 
         //BY INPUT LOGIC
-        if(Input.GetKeyDown(KeyCode.F))
+        if(Input.GetKeyDown(KeyCode.F) && key)
         {
             door.SetActive(false);
         }
 
-        /* BY TIME LOGIC HERE
+        
         timer += Time.deltaTime;
 
         if(timer >= 3)
         {
             
         }
-        */
+        
     }
 
     private void OnTriggerExit(Collider other)

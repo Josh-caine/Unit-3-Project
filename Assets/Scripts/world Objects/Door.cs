@@ -6,9 +6,12 @@ public class Door : MonoBehaviour
 {
     [SerializeField] private PhysicalButton doorButton;
     [SerializeField] private Vector3 openOffset;
+    [SerializeField] private Vector3 closeOffset;
     [SerializeField] private float doorSpeed;
     private Vector3 closedPosition;
+    private Vector3 openPosition;
     private bool isOpen = false;
+    private bool isClosed = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,9 +28,10 @@ public class Door : MonoBehaviour
             Vector3 targetPosition = closedPosition + openOffset;
             transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * doorSpeed);
         }
-        else
+        else if(isClosed)
         {
-            transform.position = Vector3.Lerp(transform.position, closedPosition, Time.deltaTime * doorSpeed);
+            Vector3 targetPosition = openPosition + closeOffset;
+            transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * doorSpeed);
         }
     }
 
@@ -38,6 +42,6 @@ public class Door : MonoBehaviour
 
     public void CloseDoor()
     {
-        isOpen = false;
+        isClosed = true;
     }
 }

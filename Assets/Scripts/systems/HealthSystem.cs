@@ -7,7 +7,8 @@ using UnityEngine.Rendering.Universal;
 
 public class HealthSystem : MonoBehaviour
 {
-    [SerializeField] private float currentHealth;
+    public GameObject player;
+    public float currentHealth;
     [SerializeField] private float maxHealth;
 
     public Action<float> OnLifeChanged;
@@ -39,4 +40,7 @@ public class HealthSystem : MonoBehaviour
             OnDead?.Invoke();
         }
     }
+
+
+
 }

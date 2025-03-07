@@ -34,7 +34,7 @@ public class PlayerInput : MonoBehaviour
     {
           GetComponent<HealthSystem>().OnDead += () =>
           {
-               this.enabled = false;
+               //this.enabled = false;
           };     
           // Control of mouse Cursor
           Cursor.visible = false;
@@ -84,8 +84,16 @@ public class PlayerInput : MonoBehaviour
 
           if(commanderAbility && Input.GetMouseButtonDown(1))
           {
-               commanderAbility.Command();
+              // commanderAbility.Command();
           }
 
     }
+
+    public void EnableCuser()
+    {
+          Cursor.visible = true;
+          Cursor.lockState = CursorLockMode.None;     
+    }
+
+
 }
