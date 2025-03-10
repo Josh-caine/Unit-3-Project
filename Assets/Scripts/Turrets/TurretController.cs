@@ -14,12 +14,19 @@ public class TurretController : MonoBehaviour
     public float checkRadius;
     public NavMeshAgent agent;
     public Transform player;
+    public Transform turret;
+
+    public Transform lineLength;
     public float dis;
+    public LineRenderer lineRenderer;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         currentState = new TurretIdleState(this);
+        lineRenderer.positionCount = 2;
+
+        
     }
     void Start()
     {
@@ -28,6 +35,16 @@ public class TurretController : MonoBehaviour
     void Update()
     {
         currentState.OnStateUpdate();
+        if(playerCheckDistance < 2)
+        {
+            lineRenderer.SetPosition(0, turret.position);
+            lineRenderer.SetPosition(1, player.position);
+        }
+        else
+        {
+            lineRenderer.SetPosition(0, turret.position);
+            lineRenderer.SetPosition(1, lineLength.position);
+        }
     }
     public void ChangeState(TurretState state)
     {

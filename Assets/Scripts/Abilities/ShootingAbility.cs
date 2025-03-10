@@ -7,6 +7,7 @@ public class ShootingAbility : MonoBehaviour
     [SerializeField] private Transform weaponTip;
     [SerializeField] private Rigidbody projectilePrefab;
     [SerializeField] private float shootingForce;
+    [SerializeField] private AudioSource shootingAduio;
 
     ObjectPooling objectPoolingCache;
 
@@ -22,6 +23,7 @@ public class ShootingAbility : MonoBehaviour
 
     public void Shoot()
     {
+        shootingAduio.Play();
 
         Rigidbody clonedRigidbody = objectPoolingCache.RetrieveAvailableBullet().GetRigidbody();
 

@@ -10,16 +10,18 @@ public class GameController : MonoBehaviour
     public UnityEvent OnFinalPuzzleCompleted = new UnityEvent();
     
     [SerializeField] private Puzzle finalPuzzle;
+    public GameObject introCanvis;
 
     private void Start() 
     {
         finalPuzzle.OnPuzzleCompleted.AddListener(GameCompleted);
+        introCanvis.SetActive(true);
+        
     }
 
     public void StartGame()
     {
-       //enblr player movement
-       //start timer
+        introCanvis.SetActive(false);
     }
 
     public void GameCompleted()

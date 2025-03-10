@@ -12,6 +12,7 @@ public class PressurePlate : MonoBehaviour, IPuzzlePiece
     [SerializeField] private Vector3 openOffset;
     [SerializeField] private float dropSpeed;
     private Vector3 startPosition;
+    [SerializeField] AudioSource boxAudio;
 
     protected bool isPressed;
     private void OnTriggerStay(Collider other)
@@ -20,6 +21,7 @@ public class PressurePlate : MonoBehaviour, IPuzzlePiece
         {
             OnPressureStart?.Invoke();
             isPressed = true;
+            boxAudio.Play();
             return;
         }
 

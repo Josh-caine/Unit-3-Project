@@ -1,13 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class TurretIdleState : TurretState
 {
-    //int currentTarget = 0;
-     
-    
+    //int currentTarget = 0
+
+    private void Start() 
+    {
+
+    }
+
     public TurretIdleState(TurretController turret) : base(turret)
     {
 
@@ -17,7 +23,7 @@ public class TurretIdleState : TurretState
     {
         
         //turret.agent.destination = turret.targetPoints[currentTarget].position;
-        Debug.Log("Turret Idle Enter");
+        //Debug.Log("Turret Idle Enter");
     }
     public override void OnStateUpdate()
     {
@@ -32,7 +38,7 @@ public class TurretIdleState : TurretState
         {
             if(hit.transform.CompareTag("Player"))
             {
-                Debug.Log("Player found");
+               // Debug.Log("Player found");
 
                 turret.player = hit.transform;
                 turret.turretEye.LookAt(turret.player);
@@ -44,9 +50,9 @@ public class TurretIdleState : TurretState
     }
     public override void OnStateExit()
     {
-       Debug.Log ("Turret Idle Exiting");
+      // Debug.Log ("Turret Idle Exiting");
     }
 
- 
+
 }
 
