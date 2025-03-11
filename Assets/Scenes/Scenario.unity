@@ -3406,7 +3406,31 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 0d2a57a924ed1784d812fdd5749a8c4e, type: 2}
     m_Events:
     - m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 1384777031}
+          m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+          m_MethodName: set_enabled
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1384777032}
+          m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+          m_MethodName: set_enabled
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 452055482}
@@ -12167,6 +12191,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1384777031 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6216833307644694858, guid: 843747075df0aee48ad348b4be665751,
+    type: 3}
+  m_PrefabInstance: {fileID: 367451351}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215026174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8459af60f9d596a43a8d8952f1cc2f4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1384777032 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6618270345560620770, guid: 843747075df0aee48ad348b4be665751,
+    type: 3}
+  m_PrefabInstance: {fileID: 367451351}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215026174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8512ba658b31fd74eba411d996d84b85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1396332622
 GameObject:
   m_ObjectHideFlags: 0
